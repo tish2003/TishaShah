@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.desktop {
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+}
+
+.desktop-header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.desktop-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.desktop-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.desktop-folder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+.desktop-header {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #0f3460;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.header-controls {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #64b5f6;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: rgba(100, 181, 246, 0.1);
+    border: 1px solid rgba(100, 181, 246, 0.3);
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.back-btn:hover {
+    background: rgba(100, 181, 246, 0.2);
+    border-color: #64b5f6;
+    transform: translateX(-2px);
+}
+
+.desktop-header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.desktop-header p {
+    margin: 0;
+    color: #b0bec5;
+    font-size: 1.1rem;
+}
+
+.desktop-folder:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.desktop-folder:active {
+    transform: scale(0.95);
+}
+
+.desktop-folder.selected {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Desktop Folder Icon */
+.folder-icon {
+    position: relative;
+    width: 64px;
+    height: 52px;
+    margin-bottom: 8px;
+}
+
+.folder-back {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 64px;
+    height: 40px;
+    background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
+    border-radius: 4px 4px 2px 2px;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.folder-front {
+    position: absolute;
+    bottom: 4px;
+    left: 2px;
+    width: 60px;
+    height: 36px;
+    background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
+    border-radius: 3px 3px 2px 2px;
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.folder-tab {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 20px;
+    height: 12px;
+    background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
+    border-radius: 3px 3px 0 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Folder Label */
+.folder-label {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    max-width: 100px;
+    word-wrap: break-word;
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-top: 5px;
+}
+
+/* Folder Type Badge */
+.folder-type {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-top: 4px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Double-click animation */
+.desktop-folder.opening .folder-icon {
+    animation: folderOpen 0.3s ease;
+}
+
+@keyframes folderOpen {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1) rotateY(10deg); }
+    100% { transform: scale(1); }
+}
+
+/* Hover effects */
+.desktop-folder:hover .folder-front {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.desktop-folder:hover .folder-back {
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Different folder colors for different types */
+.folder-web .folder-back {
+    background: linear-gradient(135deg, #4fc3f7 0%, #2196f3 100%);
+}
+
+.folder-web .folder-front {
+    background: linear-gradient(135deg, #81d4fa 0%, #42a5f5 100%);
+}
+
+.folder-web .folder-tab {
+    background: linear-gradient(135deg, #81d4fa 0%, #42a5f5 100%);
+}
+
+.folder-mobile .folder-back {
+    background: linear-gradient(135deg, #81c784 0%, #4caf50 100%);
+}
+
+.folder-mobile .folder-front {
+    background: linear-gradient(135deg, #a5d6a7 0%, #66bb6a 100%);
+}
+
+.folder-mobile .folder-tab {
+    background: linear-gradient(135deg, #a5d6a7 0%, #66bb6a 100%);
+}
+
+.folder-data .folder-back {
+    background: linear-gradient(135deg, #ba68c8 0%, #9c27b0 100%);
+}
+
+.folder-data .folder-front {
+    background: linear-gradient(135deg, #ce93d8 0%, #ab47bc 100%);
+}
+
+.folder-data .folder-tab {
+    background: linear-gradient(135deg, #ce93d8 0%, #ab47bc 100%);
+}
+
+.folder-game .folder-back {
+    background: linear-gradient(135deg, #ff8a65 0%, #ff5722 100%);
+}
+
+.folder-game .folder-front {
+    background: linear-gradient(135deg, #ffab91 0%, #ff7043 100%);
+}
+
+.folder-game .folder-tab {
+    background: linear-gradient(135deg, #ffab91 0%, #ff7043 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .desktop-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .folder-icon {
+        width: 56px;
+        height: 46px;
+    }
+    
+    .folder-back {
+        width: 56px;
+        height: 35px;
+    }
+    
+    .folder-front {
+        width: 52px;
+        height: 31px;
+    }
+    
+    .folder-label {
+        font-size: 0.8rem;
+    }
+    
+    .desktop-header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .desktop-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .desktop-folder {
+        padding: 10px;
+    }
+}
+
+/* Loading animation */
+.desktop-folder {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.desktop-folder:nth-child(1) { animation-delay: 0.1s; }
+.desktop-folder:nth-child(2) { animation-delay: 0.2s; }
+.desktop-folder:nth-child(3) { animation-delay: 0.3s; }
+.desktop-folder:nth-child(4) { animation-delay: 0.4s; }
+.desktop-folder:nth-child(5) { animation-delay: 0.5s; }
+.desktop-folder:nth-child(6) { animation-delay: 0.6s; }
+.desktop-folder:nth-child(7) { animation-delay: 0.7s; }
+.desktop-folder:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
